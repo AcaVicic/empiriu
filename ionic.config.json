@@ -1,0 +1,7 @@
+{
+  "name": "empiriu",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
