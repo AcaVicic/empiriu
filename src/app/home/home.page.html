@@ -1,20 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-icon name="earth-outline" slot="start" style="padding-left: 10px"></ion-icon>
+    <ion-title (click)="homePage()">
+      empiriu
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-text class="home-text">
+        Chose your activity for today.
+      </ion-text>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-align-items-center home-button">
+      <ion-button size="large" routerLink="daily-quote"></ion-button>
+      <ion-text>Daily Quote</ion-text>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-align-items-center home-button">
+      <ion-button size="large" routerLink="your-journal"></ion-button>
+      <ion-text>Your Journal</ion-text>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-align-items-center home-button">
+      <ion-button size="large" routerLink="memento-mori"></ion-button>
+      <ion-text>Memento-mori Calendar</ion-text>
+    </ion-row>
+  </ion-grid>
 </ion-content>
