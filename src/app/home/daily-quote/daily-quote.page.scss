@@ -1,0 +1,44 @@
+.daily-quote-div{
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.daily-quote-text{
+  font-size: large;
+}
+
+.daily-quote-author{
+  padding-top: 15px;
+  font: italic bold large Georgia, serif;
+}
+
+.daily-quote-context-icon{
+  padding-top: 15px;
+}
+
+.daily-quote-image-div{
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.daily-quote-avatar{
+  width: 20em;
+  height: 20em;
+  margin-right: -50px;
+  margin-bottom: -50px;
+}
+
+.daily-quote-button{
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  margin-bottom: 15px;
+  margin-left: 15px;
+}
+
+
+
