@@ -8,6 +8,7 @@ import { DailyQuotePageRoutingModule } from './daily-quote-routing.module';
 
 import { DailyQuotePage } from './daily-quote.page';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +16,6 @@ import { DailyQuotePage } from './daily-quote.page';
     IonicModule,
     DailyQuotePageRoutingModule
   ],
-  declarations: [DailyQuotePage]
+    declarations: [DailyQuotePage]
 })
 export class DailyQuotePageModule {}

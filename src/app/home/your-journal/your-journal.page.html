@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>your-journal</ion-title>
+    <ion-icon name="earth-outline" slot="start" style="padding-left: 10px"></ion-icon>
+    <ion-title>empiriu</ion-title>
     <ion-buttons slot="end">
       <ion-back-button icon="arrow-back-outline"></ion-back-button>
     </ion-buttons>
@@ -8,5 +9,12 @@
 </ion-header>
 
 <ion-content>
+  <div class="your-journal-content-div">
+    <ion-title>
+      Today's journal: {{ today | date: 'dd.MM.yyyy.' }}
+    </ion-title>
+    <ion-textarea rows="6">
 
+    </ion-textarea>
+  </div>
 </ion-content>

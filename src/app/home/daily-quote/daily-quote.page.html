@@ -25,10 +25,85 @@
     <ion-text class="daily-quote-author">
       Neki Filozof
     </ion-text>
-    <ion-icon class="daily-quote-context-icon" name="help-circle-outline" size="large"></ion-icon>
+    <ion-icon id="trigger" class="daily-quote-context-icon" name="help-circle-outline" size="large"></ion-icon>
+    <ion-modal
+      trigger="trigger"
+      [breakpoints]="[0, 0.4, 0.99]"
+      [initialBreakpoint]="0.4"
+      [handle]="false"
+    >
+      <ng-template>
+        <ion-content>
+          <div class="modal-exp">
+            <ion-text class="daily-quote-author">
+              Content:
+            </ion-text>
+            <ion-text class="modal-about-book">
+              Book:
+            </ion-text>
+            <ion-text class="modal-about-text">
+              Lorem ipsum asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
+              oiajsdiojaios
+              jdoiajs ojasi asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
+              oiajsdiojaios jdoiajs ojasi
+              asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
+              ojasi
+              asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
+              ojasi.
+              Lorem ipsum asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
+              oiajsdiojaios
+              jdoiajs ojasi asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
+              oiajsdiojaios jdoiajs ojasi
+              asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
+              ojasi
+              asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
+              ojasi.
+            </ion-text>
+          </div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   </div>
 
-  <ion-button class="daily-quote-button" shape="round" size="small">About philosopher</ion-button>
+  <ion-button id="about-trigger" class="daily-quote-button" shape="round" size="small">About philosopher</ion-button>
+  <ion-modal
+    trigger="about-trigger"
+    [breakpoints]="[0, 0.4, 0.99]"
+    [initialBreakpoint]="0.4"
+    [handle]="false"
+  >
+    <ng-template>
+      <ion-content>
+        <div class="modal-exp">
+          <ion-text class="daily-quote-author">
+            Content:
+          </ion-text>
+          <ion-text class="modal-about-book">
+            Book:
+          </ion-text>
+          <ion-text class="modal-about-text">
+            Lorem ipsum asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
+            oiajsdiojaios
+            jdoiajs ojasi asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
+            oiajsdiojaios jdoiajs ojasi
+            asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
+            ojasi
+            asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
+            ojasi.
+            Lorem ipsum asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
+            oiajsdiojaios
+            jdoiajs ojasi asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
+            oiajsdiojaios jdoiajs ojasi
+            asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
+            ojasi
+            asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
+            ojasi.
+
+          </ion-text>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
   <div class="daily-quote-image-div">
     <ion-avatar class="daily-quote-avatar">
       <img alt="philosopher" src="assets/new_mexico_rustlers2.jpg">
