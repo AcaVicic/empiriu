@@ -1,6 +1,24 @@
-.your-journal-content-div{
+.your-journal-text-div {
   background-color: #2dd36f;
   padding: 5%;
   border-radius: 25px 25px 0 0;
   height: 100%;
 }
+
+.your-journal-text-length-div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.your-journal-button-div {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 18%;
+}
+
+.your-journal-textarea{
+  height: 75%;
+  line-height: 30px;
+}
+

@@ -9,12 +9,22 @@
 </ion-header>
 
 <ion-content>
-  <div class="your-journal-content-div">
+  <div class="your-journal-text-div">
     <ion-title>
-      Today's journal: {{ today | date: 'dd.MM.yyyy.' }}
+      Today's journal: {{ viewDate | date: 'dd.MM.yyyy.' }}
     </ion-title>
-    <ion-textarea rows="6">
+    <ion-textarea class="your-journal-textarea" (ionChange)="getTextLength()" auto-grow="true" maxlength="800">
 
     </ion-textarea>
+    <div class="your-journal-text-length-div">
+      <ion-text slot="end" >
+        {{length}}/450
+      </ion-text>
+    </div>
+    <div class="your-journal-button-div">
+      <ion-button (click)="openPicker()" shape="round" size="small">
+        All journals
+      </ion-button>
+    </div>
   </div>
 </ion-content>
