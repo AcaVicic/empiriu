@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>memento-mori</ion-title>
+    <ion-icon name="earth-outline" slot="start" style="padding-left: 10px"></ion-icon>
+    <ion-title>empiriu</ion-title>
     <ion-buttons slot="end">
       <ion-back-button icon="arrow-back-outline"></ion-back-button>
     </ion-buttons>
@@ -8,5 +9,22 @@
 </ion-header>
 
 <ion-content>
+  <div class="memento-mori-div">
+    <ion-text class="memento-mori-text">
+      Memento Mori Calendar
+    </ion-text>
 
+      <ion-button class="memento-mori-button" id="trigger" shape="round" size="small">
+        Guide
+      </ion-button>
+
+  </div>
+  <ion-modal
+    trigger="trigger"
+    [breakpoints]="[0, 0.87, 0.99]"
+    [initialBreakpoint]="0.87"
+    [handle]="false"
+  >
+
+  </ion-modal>
 </ion-content>
