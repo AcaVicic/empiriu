@@ -1,28 +1,36 @@
-import {Component, ViewChild, AfterViewInit} from '@angular/core';
-import {IonTextarea, PickerController} from "@ionic/angular";
+import {Component, ViewChild, AfterViewInit, OnInit} from '@angular/core';
+import {AlertController, IonTextarea, LoadingController, PickerController} from "@ionic/angular";
+import {DailyJournal, EmpiriuService} from "../../services/empiriu.service";
 
 @Component({
   selector: 'app-your-journal',
   templateUrl: './your-journal.page.html',
   styleUrls: ['./your-journal.page.scss'],
 })
-export class YourJournalPage implements AfterViewInit {
+export class YourJournalPage implements OnInit, AfterViewInit {
 
   viewDate;
   @ViewChild(IonTextarea) textarea: IonTextarea;
   length;
   date: Date;
   now: Date;
+  journal: DailyJournal;
+  isDataAvailable: boolean = false;
+  isHidden: boolean = false;
+  onLoadJournal: string;
 
-  constructor(private pickerController: PickerController) {
-    this.now = new Date(Date.now());
-    this.viewDate = Date.now();
+  constructor(private pickerController: PickerController, private service: EmpiriuService, private loadingCtrl: LoadingController, private alertController: AlertController) {
+    this.now = new Date();
+    this.viewDate = new Date();
     this.length = 0;
   }
 
-  ngAfterViewInit(){
-    this.textarea.value = 'qwerty';
-    this.length = this.textarea.value.length;
+  ngAfterViewInit(): void {
+    this.loadToday();
+  }
+
+  loadToday(): void {
+    this.loadJournal(`${this.now.getDate()}.${this.now.getMonth() + 1}.${this.now.getFullYear()}.`);
   }
 
   async openPicker() {
@@ -159,7 +167,7 @@ export class YourJournalPage implements AfterViewInit {
         },
         {
           name: 'month',
-          options:[
+          options: [
             {
               text: 'January',
               value: 0
@@ -212,7 +220,7 @@ export class YourJournalPage implements AfterViewInit {
         },
         {
           name: 'year',
-          options:[
+          options: [
             {
               text: '2021',
               value: 2021
@@ -224,7 +232,7 @@ export class YourJournalPage implements AfterViewInit {
           ]
         }
       ],
-      buttons:[
+      buttons: [
         {
           text: 'Cancel',
           role: 'cancel',
@@ -234,13 +242,16 @@ export class YourJournalPage implements AfterViewInit {
           handler: (value) => {
             this.date = new Date(value.year.value, value.month.value, value.day.value);
 
-            if(this.now.getFullYear() > this.date.getFullYear() || this.now.getMonth() > this.date.getMonth() || this.now.getDay() > this.date.getDay()){
+            if (this.now.getFullYear() > this.date.getFullYear() || this.now.getMonth() + 1 > this.date.getMonth() + 1 || this.now.getDate() > this.date.getDate()) {
               this.viewDate = this.date;
               this.textarea.readonly = true;
-            }
-            else if(this.now.getFullYear() == this.date.getFullYear() && this.now.getMonth() == this.date.getMonth() && this.now.getDay() == this.date.getDay()){
+              this.isHidden = true;
+              this.loadJournal(`${value.day.value}.${value.month.value + 1}.${value.year.value}.`)
+            } else if (this.now.getFullYear() == this.date.getFullYear() && this.now.getMonth() + 1 == this.date.getMonth() + 1 && this.now.getDate() == this.date.getDate()) {
               this.viewDate = this.date;
               this.textarea.readonly = false;
+              this.isHidden = false;
+              this.loadToday();
               console.log(this.textarea.readonly)
             }
             console.log(this.date)
@@ -252,6 +263,96 @@ export class YourJournalPage implements AfterViewInit {
   }
 
   getTextLength() {
-    this.length = this.textarea.value.length;
+    this.journal.text = this.textarea.value;
+  }
+
+  ngOnInit(): void {
+
+  }
+
+  async loadJournal(date: string) {
+    const loading = await this.loadingCtrl.create({
+      message: 'Loading...',
+      spinner: 'bubbles'
+    });
+    await loading.present();
+    console.log(date)
+    this.service.getJournal(date).subscribe(res => {
+        loading.dismiss();
+        this.journal = res;
+        this.onLoadJournal = res.text;
+        this.isDataAvailable = true;
+      }
+    );
+  }
+
+  async saveJournal() {
+    if (this.onLoadJournal.length == 0 && this.journal.text.length > 0) {
+      this.journal.date = this.now;
+      this.journal.user.id = 1;
+      this.service.postJournal(this.journal);
+      const alert = await this.alertController.create({
+        message: "Journal successfully saved!",
+        buttons: [
+          {
+            text: 'OK',
+            handler(){
+              window.location.reload();
+            }
+          }
+        ]
+      });
+      await alert.present();
+    } else if (this.onLoadJournal.length > 0 && this.journal.text.length > 0 && this.onLoadJournal != this.journal.text) {
+      this.service.putJournal(this.journal);
+      const alert = await this.alertController.create({
+        message: "Journal successfully changed!",
+        buttons: [
+          {
+            text: 'OK',
+            handler(){
+              window.location.reload();
+            }
+          }
+        ]
+      });
+      await alert.present();
+    } else if (this.onLoadJournal.length > 0 && this.journal.text.length == 0) {
+      this.service.deleteJournal(this.journal.id)
+      const alert = await this.alertController.create({
+        message: "Journal successfully deleted!",
+        buttons: [
+          {
+            text: 'OK',
+            handler(){
+              window.location.reload();
+            }
+          }
+        ]
+      });
+      await alert.present();
+    } else if (this.onLoadJournal.length > 0 && this.journal.text.length > 0 && this.onLoadJournal == this.journal.text) {
+      const alert = await this.alertController.create({
+        message: "Journal wasn't changed!",
+        buttons: [
+          {
+            text: 'OK',
+            role: "cancel"
+          }
+        ]
+      });
+      await alert.present();
+    } else if (this.onLoadJournal.length == 0 && this.journal.text.length == 0) {
+      const alert = await this.alertController.create({
+        message: "Journal is empty!",
+        buttons: [
+          {
+            text: 'OK',
+            role: "cancel"
+          }
+        ]
+      });
+      await alert.present();
+    }
   }
 }

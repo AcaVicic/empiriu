@@ -10,20 +10,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="isDataAvailable">
   <div class="daily-quote-div">
     <ion-text class="daily-quote-text">
-      Lorem ipsum asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
-      oiajsdiojaios
-      jdoiajs ojasi asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
-      oiajsdiojaios jdoiajs ojasi
-      asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
-      ojasi
-      asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
-      ojasi.
+      {{quote.text}}
     </ion-text>
     <ion-text class="daily-quote-author">
-      Neki Filozof
+      {{quote.philosopher}}
     </ion-text>
     <ion-icon id="trigger" class="daily-quote-context-icon" name="help-circle-outline" size="large"></ion-icon>
     <ion-modal
@@ -39,25 +32,10 @@
               Content:
             </ion-text>
             <ion-text class="modal-about-book">
-              Book:
+              Book: {{quote.book}}
             </ion-text>
             <ion-text class="modal-about-text">
-              Lorem ipsum asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
-              oiajsdiojaios
-              jdoiajs ojasi asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
-              oiajsdiojaios jdoiajs ojasi
-              asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
-              ojasi
-              asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
-              ojasi.
-              Lorem ipsum asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
-              oiajsdiojaios
-              jdoiajs ojasi asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
-              oiajsdiojaios jdoiajs ojasi
-              asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
-              ojasi
-              asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
-              ojasi.
+              {{quote.explanation}}
             </ion-text>
           </div>
         </ion-content>
@@ -76,29 +54,13 @@
       <ion-content>
         <div class="modal-exp">
           <ion-text class="daily-quote-author">
-            Content:
+            About {{quote.philosopher}}:
           </ion-text>
           <ion-text class="modal-about-book">
-            Book:
+            Book: {{quote.book}}
           </ion-text>
           <ion-text class="modal-about-text">
-            Lorem ipsum asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
-            oiajsdiojaios
-            jdoiajs ojasi asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
-            oiajsdiojaios jdoiajs ojasi
-            asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
-            ojasi
-            asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
-            ojasi.
-            Lorem ipsum asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
-            oiajsdiojaios
-            jdoiajs ojasi asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij
-            oiajsdiojaios jdoiajs ojasi
-            asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
-            ojasi
-            asdasasf asfasfasfasdf aso aisjdao sidjoasdj aosdja iosdji oasjdioajdio asjdoi asodj aosij oiajsdiojaios jdoiajs
-            ojasi.
-
+            {{quote.aboutPhilosopher}}
           </ion-text>
         </div>
       </ion-content>
@@ -106,7 +68,7 @@
   </ion-modal>
   <div class="daily-quote-image-div">
     <ion-avatar class="daily-quote-avatar">
-      <img alt="philosopher" src="assets/new_mexico_rustlers2.jpg">
+      <img alt="philosopher" src="{{quote.image}}">
     </ion-avatar>
   </div>
 </ion-content>

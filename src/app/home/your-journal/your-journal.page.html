@@ -8,17 +8,20 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="isDataAvailable">
   <div class="your-journal-text-div">
-    <ion-title>
+    <ion-text>
       Today's journal: {{ viewDate | date: 'dd.MM.yyyy.' }}
-    </ion-title>
-    <ion-textarea class="your-journal-textarea" (ionChange)="getTextLength()" auto-grow="true" maxlength="450">
+    </ion-text>
+    <ion-button (click)="saveJournal()" [hidden]="isHidden" class="your-journal-save-button" shape="round" size="small">
+      Save
+    </ion-button>
+    <ion-textarea [value]="journal.text" class="your-journal-textarea" (ionChange)="getTextLength()" auto-grow="true" maxlength="450">
 
     </ion-textarea>
     <div class="your-journal-text-length-div">
       <ion-text slot="end" >
-        {{length}}/450
+        {{journal.text.length}}/450
       </ion-text>
     </div>
     <div class="your-journal-button-div">
