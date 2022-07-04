@@ -242,7 +242,10 @@ export class YourJournalPage implements OnInit, AfterViewInit {
           handler: (value) => {
             this.date = new Date(value.year.value, value.month.value, value.day.value);
 
-            if (this.now.getFullYear() > this.date.getFullYear() || this.now.getMonth() + 1 > this.date.getMonth() + 1 || this.now.getDate() > this.date.getDate()) {
+            if(this.date > this.now){
+
+            }
+            else if (this.now.getFullYear() > this.date.getFullYear() || this.now.getMonth() + 1 > this.date.getMonth() + 1 || this.now.getDate() > this.date.getDate()) {
               this.viewDate = this.date;
               this.textarea.readonly = true;
               this.isHidden = true;
