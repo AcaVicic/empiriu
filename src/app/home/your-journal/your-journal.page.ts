@@ -292,7 +292,7 @@ export class YourJournalPage implements OnInit, AfterViewInit {
   async saveJournal() {
     if (this.onLoadJournal.length == 0 && this.journal.text.length > 0) {
       this.journal.date = this.now;
-      this.journal.user.id = 1;
+      this.journal.user = this.service.user;
       this.service.postJournal(this.journal);
       const alert = await this.alertController.create({
         message: "Journal successfully saved!",

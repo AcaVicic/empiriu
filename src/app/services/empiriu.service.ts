@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 export interface Quote {
   philosopher: string;
@@ -11,10 +12,11 @@ export interface Quote {
   book: string;
 }
 
-export interface User{
+export interface User {
   id: number;
   username: string;
   password: string;
+  email: string
 }
 
 export interface DailyJournal {
@@ -30,22 +32,24 @@ export interface DailyJournal {
 
 export class EmpiriuService {
   url = 'https://localhost:7185/api/Empiriu';
+  urlUser = 'https://localhost:7185/api/Token/User';
   body;
+  user: User;
+  isLoggedIn: boolean = false;
 
-
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
 
-  getDailyQuote() : Observable<Quote> {
+  getDailyQuote(): Observable<Quote> {
     return this.http.get<Quote>(`${this.url}/Quote/1`);
   }
 
-  getJournal(date:string) : Observable<DailyJournal> {
+  getJournal(date: string): Observable<DailyJournal> {
     return this.http.get<DailyJournal>(`${this.url}/Journal/1/${date}`);
   }
 
-  postJournal(data: DailyJournal){
+  postJournal(data: DailyJournal) {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     }
@@ -59,7 +63,7 @@ export class EmpiriuService {
     });
   }
 
-  putJournal(data: DailyJournal){
+  putJournal(data: DailyJournal) {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     }
@@ -73,11 +77,47 @@ export class EmpiriuService {
     });
   }
 
-  deleteJournal(id: number){
+  deleteJournal(id: number) {
     this.http.delete(`${this.url}/Journal/${id}`).subscribe(res => {
       console.log(res);
     }, error => {
       console.log(error);
     });
+  }
+
+  logIn(email: string, password: string): any {
+
+    this.user = new class implements User {
+      email: string;
+      id: number;
+      password: string;
+      username: string;
+    }
+    this.user.id = 0;
+    this.user.username = '';
+    this.user.email = email;
+    this.user.password = password;
+
+    this.body = JSON.stringify(this.user);
+    console.log(this.body)
+
+    // @ts-ignore
+    this.http.post(`${this.urlUser}`, this.body, {
+        responseType: 'text',
+        headers: new HttpHeaders({'Content-Type': 'application/json'})
+      }
+    ).subscribe((data: any) => {
+      localStorage.setItem('access_token', data);
+      this.getUser(email).subscribe(res => {
+        this.user = res;
+        this.router.navigate(['home'])
+      });
+    }, error => {
+      console.log(error.error);
+    });
+  }
+
+  getUser(email): Observable<User> {
+    return this.http.get<User>(`${this.url}/User/${email}`, {headers: new HttpHeaders({'Content-Type': 'application/json'})});
   }
 }
