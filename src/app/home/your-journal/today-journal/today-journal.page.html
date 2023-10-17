@@ -1,0 +1,56 @@
+<ion-row class="toolbar">
+  <ion-row class="toolbar-height ion-justify-content-between ion-align-items-center">
+    <ion-img routerLink="../../" class="logo-img" src="../../../assets/logotip svg-05.svg"></ion-img>
+    <ion-img class="menu-img" id="menu4" src="../../../../assets/hamburger drop down svg-12.svg"></ion-img>
+    <ion-popover trigger="menu4" [dismissOnSelect]="true">
+      <ng-template>
+        <ion-content>
+          <ion-img routerLink="../../daily-quote" class="menu-item" src="../../../../assets/citat piktogram svg-23.svg"></ion-img>
+          <ion-img routerLink="../../your-journal" class="menu-item" src="../../../../assets/dnevik-piktogram svg-25.svg"></ion-img>
+          <ion-img routerLink="../../memento-mori" class="menu-item" src="../../../../assets/kalendar-piktogram-24.svg"></ion-img>
+        </ion-content>
+      </ng-template>
+    </ion-popover>
+  </ion-row>
+  <ion-row class="w-50">
+    <span class="line-orange"></span><span class="line-black"></span><span class="line-white"></span>
+  </ion-row>
+</ion-row>
+
+<ion-content *ngIf="journal">
+  <div class="container">
+    <ion-row class="font-at font-x-large">
+      <span>todays journal</span>
+    </ion-row>
+    <ion-row class="textarea-container">
+      <span class="font-bb font-x-large">{{today | date:'MMMM d'}}th</span>
+      <ion-textarea [(ngModel)]="journal.text" [autoGrow]="true" maxlength="444" class="font-br textarea font-x-large" placeholder="Type something here"></ion-textarea>
+    </ion-row>
+  </div>
+  <ion-row>
+    <ion-img id="journal-trigger2" class="info-btn" src="../../../../assets/info dugme svg-11.svg">
+    </ion-img>
+    <ion-modal
+      trigger="journal-trigger2"
+      [breakpoints]="[0, 0.4, 0.99]"
+      [initialBreakpoint]="0.4"
+      [handle]="false"
+    >
+      <ng-template>
+        <ion-content>
+          <div class="modal-exp">
+            <ion-text class="modal-header font-at">
+              literary context:
+            </ion-text>
+            <ion-text class="font-br font-x-large">
+              Neki tekst.
+            </ion-text>
+          </div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+    <ion-button (click)="saveJournal()" [disabled]="journal?.id == 0 && journal?.text.length == 0" class="journal-btn font-at" shape="round" size="small">
+      confirm
+    </ion-button>
+  </ion-row>
+</ion-content>

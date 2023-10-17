@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: YourJournalPage
+  },
+  {
+    path: 'today-journal',
+    loadChildren: () => import('./today-journal/today-journal.module').then( m => m.TodayJournalPageModule)
   }
 ];
 

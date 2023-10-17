@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EmpiriuService, Quote} from "../../services/empiriu.service";
 import {LoadingController} from "@ionic/angular";
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-daily-quote',
@@ -12,8 +13,9 @@ import {LoadingController} from "@ionic/angular";
 export class DailyQuotePage implements OnInit {
   quote: Quote;
   isDataAvailable: boolean = false;
+  loading: HTMLIonLoadingElement;
 
-  constructor(private service: EmpiriuService, private loadingCtrl: LoadingController) {
+  constructor(private service: EmpiriuService, private loaderService: LoaderService) {
 
   }
 
@@ -22,14 +24,10 @@ export class DailyQuotePage implements OnInit {
   }
 
   async loadQuote() {
-    const loading = await this.loadingCtrl.create({
-      message: 'Loading...',
-      spinner: 'bubbles'
-    });
-    await loading.present();
+    await this.loaderService.showLoader();
 
     this.service.getDailyQuote().subscribe(res => {
-        loading.dismiss();
+        this.loaderService.hideLoader();
         this.quote = res;
         this.isDataAvailable = true;
       }

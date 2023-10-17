@@ -1,33 +1,60 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-icon name="earth-outline" slot="start" style="padding-left: 10px"></ion-icon>
-    <ion-title>empiriu</ion-title>
-    <ion-buttons slot="end">
-      <ion-back-button icon="arrow-back-outline"></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content *ngIf="isDataAvailable">
-  <div class="your-journal-text-div">
-    <ion-text>
-      Today's journal: {{ viewDate | date: 'dd.MM.yyyy.' }}
-    </ion-text>
-    <ion-button (click)="saveJournal()" [hidden]="isHidden" class="your-journal-save-button" shape="round" size="small">
-      Save
+<ion-row class="toolbar">
+  <ion-row class="toolbar-height ion-justify-content-between ion-align-items-center">
+    <ion-img routerLink="../" class="logo-img" src="../../assets/logotip svg-05.svg"></ion-img>
+    <ion-img class="menu-img" id="menu2" src="../../../assets/hamburger drop down svg-12.svg"></ion-img>
+    <ion-popover trigger="menu2" [dismissOnSelect]="true">
+      <ng-template>
+        <ion-content>
+          <ion-img routerLink="../daily-quote" class="menu-item" src="../../../assets/citat piktogram svg-23.svg"></ion-img>
+          <ion-img routerLink="../your-journal" class="menu-item" src="../../../assets/dnevik-piktogram svg-25.svg"></ion-img>
+          <ion-img routerLink="../memento-mori" class="menu-item" src="../../../assets/kalendar-piktogram-24.svg"></ion-img>
+        </ion-content>
+      </ng-template>
+    </ion-popover>
+  </ion-row>
+  <ion-row class="w-50">
+    <span class="line-orange"></span><span class="line-black"></span><span class="line-white"></span>
+  </ion-row>
+</ion-row>
+<ion-content *ngIf="journals">
+  <ion-row class="container">
+    <ion-row class="journal" *ngFor="let journal of journals; let i = index"
+    [class.border-top]="!(i == 0 || ( i > 0 && getYear(journal) > getYear(journals[i - 1])))">
+      <ion-row class="year font-at font-large" *ngIf="i == 0 || ( i > 0 && getYear(journal) > getYear(journals[i - 1]))">
+        {{getYear(journal)}}
+      </ion-row>
+      <ion-row class="font-bb">
+        {{journal.date | date:"MMMM dd"}}th
+      </ion-row>
+      <ion-row class="font-br journal-text">
+        {{journal.text}}
+      </ion-row>
+    </ion-row>
+  </ion-row>
+  <ion-row>
+    <ion-img id="journal-trigger" class="info-btn" src="../../../assets/info dugme svg-11.svg">
+    </ion-img>
+    <ion-modal
+      trigger="journal-trigger"
+      [breakpoints]="[0, 0.4, 0.99]"
+      [initialBreakpoint]="0.4"
+      [handle]="false"
+    >
+      <ng-template>
+        <ion-content>
+          <div class="modal-exp">
+            <ion-text class="modal-header font-at">
+              literary context:
+            </ion-text>
+            <ion-text class="font-br font-x-large">
+              Neki tekst.
+            </ion-text>
+          </div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+    <ion-button routerLink="today-journal" class="journal-btn font-at" shape="round" size="small">
+      Write today down
     </ion-button>
-    <ion-textarea [value]="journal.text" class="your-journal-textarea" (ionChange)="getTextLength()" auto-grow="true" maxlength="450">
-
-    </ion-textarea>
-    <div class="your-journal-text-length-div">
-      <ion-text slot="end" >
-        {{journal.text.length}}/450
-      </ion-text>
-    </div>
-    <div class="your-journal-button-div">
-      <ion-button (click)="openPicker()" shape="round" size="small">
-        All journals
-      </ion-button>
-    </div>
-  </div>
+  </ion-row>
 </ion-content>

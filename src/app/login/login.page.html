@@ -1,13 +1,9 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-icon name="earth-outline" slot="start" style="padding-left: 10px"></ion-icon>
-    <ion-title>
-      empiriu
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-row class="toolbar">
+    <ion-row class="ion-justify-content-between ion-align-items-center">
+      <ion-img class="logo-img" src="../../assets/logotip svg-05.svg"></ion-img>
+    </ion-row>
+  </ion-row>
   <div class="login-form-div">
     <h2>Welcome!</h2>
     <form [formGroup]="formGroup" (ngSubmit)="login()" class="login-form">

@@ -27,8 +27,7 @@
 }
 
 .home-button{
-  margin-top: 30%;
-  margin-bottom: 30%;
+  
   flex-direction: column;
 }
 
@@ -46,4 +45,23 @@
 
 .color3{
   color: #6b5342;
+}
+
+.header-md::after{
+  background-image: url('../../assets/new_mexico_rustlers2.jpg');
+  width: 40%;
+  margin-left: 10%;
+}
+
+ion-img{
+  width: 40%;
+}
+
+.home-item{
+  margin-bottom: 8%;
+}
+
+.quote-notif{
+  width: 43%;
+  margin-left: 3px;
 }

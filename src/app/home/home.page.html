@@ -1,36 +1,30 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-icon name="earth-outline" slot="start" style="padding-left: 10px"></ion-icon>
-    <ion-title (click)="homePage()">
-      empiriu
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content [fullscreen]="true">
+  <ion-row class="toolbar">
+    <ion-row class="toolbar-height ion-justify-content-between ion-align-items-center">
+      <ion-img class="logo-img" src="../../assets/logotip svg-05.svg"></ion-img>
+    </ion-row>
+  </ion-row>
   <ion-grid>
-    <ion-row class="ion-justify-content-center ion-align-items-center">
-      <ion-text class="home-text">
+    <ion-row class="home-item ion-justify-content-center ion-align-items-center">
+      <ion-text class="home-text font-bb font-x-large">
         Chose your activity for today.
       </ion-text>
     </ion-row>
-    <ion-row class="ion-justify-content-center ion-align-items-center home-button">
-      <ion-button color="warning" size="large" routerLink="daily-quote">
-        <ion-icon name="library-outline"></ion-icon>
-      </ion-button>
-      <ion-text>Daily Quote</ion-text>
+    <ion-row class="home-item ion-justify-content-center ion-align-items-center home-button">
+      <ion-img class="quote-notif" *ngIf="true" routerLink="daily-quote" src="../../assets/quote-07.svg">
+      </ion-img>
+      <ion-img *ngIf="" routerLink="daily-quote" src="../../assets/quote-07.svg">
+      </ion-img>
     </ion-row>
-    <ion-row class="ion-justify-content-center ion-align-items-center home-button">
-      <ion-button color="success" size="large" routerLink="your-journal">
-        <ion-icon name="newspaper-outline"></ion-icon>
-      </ion-button>
-      <ion-text>Your Journal</ion-text>
+    <ion-row class="home-item ion-justify-content-center ion-align-items-center home-button">
+      <ion-img routerLink="your-journal" src="../../assets/zurnal-10.svg">
+      </ion-img>
     </ion-row>
-    <ion-row class="ion-justify-content-center ion-align-items-center home-button">
-      <ion-button size="large" routerLink="memento-mori">
-        <ion-icon name="calendar-outline"></ion-icon>
-      </ion-button>
-      <ion-text>Memento-mori Calendar</ion-text>
+    <ion-row class="home-item ion-justify-content-center ion-align-items-center home-button">
+      <ion-img routerLink="memento-mori" src="../../assets/kalendar-09.svg">
+      </ion-img>
     </ion-row>
   </ion-grid>
 </ion-content>

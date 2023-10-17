@@ -24,3 +24,155 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+ion-loading.custom-loading {
+    --background: transparent;
+    --spinner-color: #f47820;
+    --ion-spinner-size: 100px;
+}
+
+.loading-wrapper.sc-ion-loading-md{
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+
+.toolbar{
+  padding: 26px 30px 0 30px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: auto !important;
+}
+
+.line-orange{
+  height: 3px;
+  width: 33%;
+  background-color: #f47820;
+}
+
+.line-black{
+  height: 3px;
+  width: 33%;
+  background-color: #2e3429;
+}
+
+.line-white{
+  height: 3px;
+  width: 33%;
+  background-color: #f8e9d5;
+}
+
+.logo-img{
+  width: 30% !important;
+}
+
+.menu-img{
+  width: 20px !important;
+}
+
+.toolbar-height{
+  height: 30px;
+  margin-bottom: 20px;
+}
+
+.info-btn{
+  width: 55px;
+}
+
+@font-face {
+  font-family: Altertype;
+  src: url("assets/fonts/altertype-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: BemboBookRegular;
+  src: url("assets/fonts/BemboBookMTPro-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: BemboRegular;
+  src: url("assets/fonts/BemboMTPro-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: BemboBold;
+  src: url("assets/fonts/BemboMTPro-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: BemboBoldItalic;
+  src: url("assets/fonts/BemboMTPro-SemiboldIt.otf") format("opentype");
+}
+
+.font-at{
+  font-family: Altertype;
+  color: #2e3429;
+}
+
+.font-bbr{
+  font-family: BemboBookRegular;
+  color: #2e3429;
+}
+
+.font-br{
+  font-family: BemboRegular;
+  color: #2e3429;
+}
+
+.font-bb{
+  font-family: BemboBold;
+  color: #2e3429;
+}
+
+.font-bbi{
+  font-family: BemboBoldItalic;
+  color: #2e3429;
+}
+
+.font-small{
+  font-size: small;
+}
+
+.font-medium{
+  font-size: medium;
+}
+
+.font-large{
+  font-size: large;
+}
+
+.font-x-large{
+  font-size: x-large;
+}
+
+.w-50{
+  width: 50% !important;
+}
+
+.menu-item{
+  width: 70px;
+  margin-bottom: 15px;
+}
+
+ion-popover {
+  --width: 110px;
+  ion-content{
+    --background: url(assets/meni_pozadina-32.svg);
+    --padding-top: 20px;
+    --padding-bottom: 5px;
+    --padding-start: 20px;
+    --padding-end: 20px;
+    
+  }
+}
+
+::part(background){
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+::part(content){
+  border-radius: 0;
+  border: #f47820 solid 3px;
+}
+
+

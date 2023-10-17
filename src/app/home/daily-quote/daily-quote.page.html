@@ -1,49 +1,40 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-icon name="earth-outline" slot="start" style="padding-left: 10px"></ion-icon>
-    <ion-title>
-      empiriu
-    </ion-title>
-    <ion-buttons slot="end">
-      <ion-back-button icon="arrow-back-outline"></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<ion-row class="toolbar">
+  <ion-row class="toolbar-height ion-justify-content-between ion-align-items-center">
+    <ion-img routerLink="../" class="logo-img" src="../../../assets/logotip svg-05.svg"></ion-img>
+    <ion-img id="menu" class="menu-img" src="../../../assets/hamburger drop down svg-12.svg"></ion-img>
+    <ion-popover trigger="menu" [dismissOnSelect]="true">
+      <ng-template>
+        <ion-content>
+          <ion-img routerLink="../daily-quote" class="menu-item" src="../../../assets/citat piktogram svg-23.svg"></ion-img>
+          <ion-img routerLink="../your-journal" class="menu-item" src="../../../assets/dnevik-piktogram svg-25.svg"></ion-img>
+          <ion-img routerLink="../memento-mori" class="menu-item" src="../../../assets/kalendar-piktogram-24.svg"></ion-img>
+        </ion-content>
+      </ng-template>
+    </ion-popover>
+  </ion-row>
+  <ion-row class="w-50">
+    <span class="line-orange"></span><span class="line-black"></span><span class="line-white"></span>
+  </ion-row>
+</ion-row>
 
 <ion-content *ngIf="isDataAvailable">
   <div class="daily-quote-div">
-    <ion-text class="daily-quote-text">
-      {{quote.text}}
+    <ion-text class="text font-x-large font-bbr">
+      "{{quote.text}}"
     </ion-text>
-    <ion-text class="daily-quote-author">
+    <ion-text class="daily-quote-author font-x-large font-bb">
       {{quote.philosopher}}
     </ion-text>
-    <ion-icon id="trigger" class="daily-quote-context-icon" name="help-circle-outline" size="large"></ion-icon>
-    <ion-modal
-      trigger="trigger"
-      [breakpoints]="[0, 0.4, 0.99]"
-      [initialBreakpoint]="0.4"
-      [handle]="false"
-    >
-      <ng-template>
-        <ion-content>
-          <div class="modal-exp">
-            <ion-text class="daily-quote-author">
-              Content:
-            </ion-text>
-            <ion-text class="modal-about-book">
-              Book: {{quote.book}}
-            </ion-text>
-            <ion-text class="modal-about-text">
-              {{quote.explanation}}
-            </ion-text>
-          </div>
-        </ion-content>
-      </ng-template>
-    </ion-modal>
+    <ion-text class="font-x-large">
+      <span class="font-br">From </span><span class="font-bbi">"{{quote.book}}"</span>
+    </ion-text>
+    <ion-text class="font-x-large">
+      <span class="font-br">(294 BC)</span>
+    </ion-text>
   </div>
 
-  <ion-button id="about-trigger" class="daily-quote-button" shape="round" size="small">About philosopher</ion-button>
+  <ion-img id="about-trigger" class="info-btn" src="../../../assets/info dugme svg-11.svg">
+  </ion-img>
   <ion-modal
     trigger="about-trigger"
     [breakpoints]="[0, 0.4, 0.99]"
@@ -53,13 +44,19 @@
     <ng-template>
       <ion-content>
         <div class="modal-exp">
-          <ion-text class="daily-quote-author">
-            About {{quote.philosopher}}:
+          <ion-text class="modal-header font-at">
+            literary context:
           </ion-text>
-          <ion-text class="modal-about-book">
-            Book: {{quote.book}}
+          <ion-text class="font-br font-x-large">
+            {{quote.explanation}}
           </ion-text>
-          <ion-text class="modal-about-text">
+          <ion-row class="line">
+            <span class="line-orange"></span><span class="line-black"></span><span class="line-white"></span>
+          </ion-row>
+          <ion-text class="modal-header font-at">
+            about the philosopher:
+          </ion-text>
+          <ion-text class="font-br font-x-large">
             {{quote.aboutPhilosopher}}
           </ion-text>
         </div>
@@ -67,8 +64,8 @@
     </ng-template>
   </ion-modal>
   <div class="daily-quote-image-div">
-    <ion-avatar class="daily-quote-avatar">
-      <img alt="philosopher" src="{{quote.image}}">
-    </ion-avatar>
+    <ion-img class="daily-quote-avatar" src="{{quote.image}}">
+
+    </ion-img>
   </div>
 </ion-content>
