@@ -23,9 +23,8 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    console.log(this.formGroup)
     this.email = this.formGroup.value.email;
     this.password = this.formGroup.value.password;
-    this.service.logIn(this.email, this.password)
+    //this.service.logIn(this.email, this.password)
   }
 }

@@ -24,13 +24,14 @@
   position: fixed;
   bottom: 0;
   right: 0;
+  z-index: -100;
 }
 
 .daily-quote-avatar{
   width: 27em;
   height: 27em;
   margin-right: -90px;
-  margin-bottom: -50px;
+  margin-bottom: -70px;
 }
 
 .info-btn{
@@ -58,7 +59,7 @@
   background-image: url(../../../assets/meni_pozadina-32.svg);
   background-size: cover;
   background-repeat: no-repeat;
-  
+  overflow: auto;
 }
 
 .modal-header{

@@ -24,6 +24,7 @@ export class MementoMoriPage implements OnInit {
   async getMementoMori(){
     await this.loader.showLoader();
     this.service.getMementoMori().subscribe(data => {
+      console.log("test")
       this.mementoMori = data;
       this.orangeSquares = [];
       this.squares = [];
@@ -40,6 +41,7 @@ export class MementoMoriPage implements OnInit {
   async saveMementoMori(){
     await this.loader.showLoader();
     this.service.saveMementoMori().subscribe(() => {
+      console.log("test")
       this.getMementoMori();
       this.loader.hideLoader();
     });

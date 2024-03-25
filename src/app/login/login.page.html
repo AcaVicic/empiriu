@@ -5,7 +5,7 @@
     </ion-row>
   </ion-row>
   <div class="login-form-div">
-    <h2>Welcome!</h2>
+    <h2 class="font-bb">Welcome!</h2>
     <form [formGroup]="formGroup" (ngSubmit)="login()" class="login-form">
       <ion-item lines="full">
         <ion-label position="floating">Email</ion-label>
@@ -17,7 +17,7 @@
       </ion-item>
       <ion-row>
         <ion-col>
-          <ion-button type="submit" color="success" expand="block">Sign In</ion-button>
+          <ion-button type="submit" routerLink="../home" color="success" expand="block">Sign In</ion-button>
         </ion-col>
       </ion-row>
     </form>
